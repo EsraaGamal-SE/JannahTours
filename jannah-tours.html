@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jannah Tours — Live the Islamic History</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green-deep:   #0D3D26;
+    --green-mid:    #155233;
+    --green-bright: #1B6B43;
+    --green-light:  #2A8A58;
+    --gold:         #C9A84C;
+    --gold-light:   #E2C47A;
+    --gold-pale:    #F5E9C8;
+    --cream:        #FAF8F2;
+    --cream-dark:   #F0EBE0;
+    --text-body:    #3A3028;
+    --text-muted:   #7A6E5E;
+    --border:       rgba(201,168,76,0.22);
+    --r:            4px;
+    --r-lg:         12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--text-body);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ─── GEOMETRIC PATTERN UTILITY ─── */
+  .geo-bg {
+    background-image:
+      repeating-linear-gradient(0deg,   transparent, transparent 39px, rgba(201,168,76,0.07) 39px, rgba(201,168,76,0.07) 40px),
+      repeating-linear-gradient(90deg,  transparent, transparent 39px, rgba(201,168,76,0.07) 39px, rgba(201,168,76,0.07) 40px);
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 4rem;
+    height: 72px;
+    background: rgba(13,61,38,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .logo-wrap { display: flex; align-items: center; gap: 12px; }
+
+  .logo-icon {
+    width: 44px; height: 44px;
+    background: var(--green-mid);
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 700;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: -1px;
+  }
+
+  .logo-text { display: flex; flex-direction: column; line-height: 1; }
+
+  .logo-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1px;
+  }
+
+  .logo-tag {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+
+  .nav-links a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.65);
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .nav-cta {
+    background: var(--gold) !important;
+    color: var(--green-deep) !important;
+    padding: 0.5rem 1.4rem;
+    border-radius: 2px;
+    font-weight: 500 !important;
+  }
+
+  .nav-cta:hover { background: var(--gold-light) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--green-deep);
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, rgba(13,61,38,0.97) 40%, rgba(13,61,38,0.55) 100%),
+      url('https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=1600&q=80') right center/cover no-repeat;
+  }
+
+  /* Geometric overlay */
+  .hero-geo {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      repeating-linear-gradient(0deg,   transparent, transparent 59px, rgba(201,168,76,0.06) 59px, rgba(201,168,76,0.06) 60px),
+      repeating-linear-gradient(90deg,  transparent, transparent 59px, rgba(201,168,76,0.06) 59px, rgba(201,168,76,0.06) 60px);
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    padding: 10rem 4rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: var(--gold);
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: '❖';
+    font-size: 0.5rem;
+    opacity: 0.7;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.8rem);
+    font-weight: 600;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    color: rgba(255,255,255,0.6);
+    font-size: 1rem;
+    font-weight: 300;
+    max-width: 500px;
+    line-height: 1.9;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--green-deep);
+    border: none;
+    padding: 0.9rem 2.2rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.9rem 2.2rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    background: transparent;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); color: var(--gold-light); }
+
+  /* ─── BOOKING WIDGET ─── */
+  .booking-widget {
+    background: var(--cream);
+    border-radius: var(--r-lg);
+    padding: 1.8rem;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    border: 1px solid var(--border);
+  }
+
+  .widget-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--green-deep);
+    margin-bottom: 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .widget-title::before { content: '☽'; color: var(--gold); font-size: 1rem; }
+
+  .widget-tabs {
+    display: flex; gap: 0; margin-bottom: 1.3rem;
+    background: var(--cream-dark);
+    border-radius: 4px;
+    padding: 3px;
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 0.45rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .tab-btn.active {
+    background: var(--green-deep);
+    color: white;
+  }
+
+  .form-group { margin-bottom: 0.9rem; }
+
+  .form-label {
+    display: block;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 0.35rem;
+    font-weight: 500;
+  }
+
+  .form-input, .form-select {
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    background: white;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.88rem;
+    color: var(--text-body);
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+
+  .form-input:focus, .form-select:focus { border-color: var(--green-bright); }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+
+  .widget-submit {
+    width: 100%;
+    background: var(--green-deep);
+    color: white;
+    border: none;
+    padding: 0.9rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: var(--r);
+    margin-top: 0.3rem;
+    transition: background 0.2s, transform 0.15s;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+
+  .widget-submit:hover { background: var(--green-bright); transform: translateY(-1px); }
+
+  /* ─── STATS ─── */
+  .stats-bar {
+    background: var(--gold);
+    padding: 1.6rem 4rem;
+    display: flex; justify-content: center;
+  }
+
+  .stat-item {
+    flex: 1; max-width: 220px;
+    text-align: center;
+    padding: 0 1.5rem;
+    border-right: 1px solid rgba(13,61,38,0.2);
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--green-deep);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    color: rgba(13,61,38,0.65);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+  /* ─── SECTIONS ─── */
+  .section-wrap { max-width: 1200px; margin: 0 auto; padding: 6rem 4rem; }
+
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--green-bright);
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+
+  .section-eyebrow::before { content: '❖'; color: var(--gold); font-size: 0.5rem; }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 600;
+    color: var(--green-deep);
+    margin-bottom: 0.8rem;
+    line-height: 1.15;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .section-sub {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    max-width: 500px;
+    margin-bottom: 3rem;
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  /* ─── DESTINATIONS ─── */
+  .dest-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 280px 240px;
+    gap: 1rem;
+  }
+
+  .dest-card {
+    position: relative;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .dest-card.tall { grid-row: 1 / 3; }
+
+  .dest-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+  }
+
+  .dest-card:hover .dest-img { transform: scale(1.05); }
+
+  .dest-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(13,61,38,0.9) 0%, transparent 60%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 1.4rem;
+  }
+
+  .dest-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--green-deep);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    width: fit-content;
+  }
+
+  .dest-name {
+    font-family: 'Cormorant Garamond', serif;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+    line-height: 1.2;
+  }
+
+  .dest-card.tall .dest-name { font-size: 2.2rem; }
+
+  .dest-meta {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.78rem;
+    display: flex; gap: 1rem;
+  }
+
+  .dest-price { color: var(--gold-light); font-weight: 500; }
+
+  /* ─── PACKAGES ─── */
+  .pkg-bg { background: var(--green-deep); }
+
+  .pkg-inner { max-width: 1200px; margin: 0 auto; padding: 6rem 4rem; }
+
+  .pkg-inner .section-title { color: white; }
+  .pkg-inner .section-sub { color: rgba(255,255,255,0.5); }
+
+  .pkg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .pkg-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .pkg-card:hover {
+    border-color: rgba(201,168,76,0.5);
+    transform: translateY(-4px);
+  }
+
+  .pkg-img-wrap { position: relative; height: 190px; overflow: hidden; }
+  .pkg-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .pkg-card:hover .pkg-img { transform: scale(1.06); }
+
+  .pkg-tag {
+    position: absolute; top: 1rem; left: 1rem;
+    background: var(--gold);
+    color: var(--green-deep);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.25rem 0.7rem;
+    border-radius: 2px;
+    font-weight: 600;
+  }
+
+  .pkg-body { padding: 1.3rem; }
+
+  .pkg-meta {
+    display: flex; justify-content: space-between;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 0.5rem;
+  }
+
+  .pkg-rating { color: var(--gold); }
+
+  .pkg-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .pkg-desc {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+
+  .pkg-includes {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .pkg-include-tag {
+    font-size: 0.65rem;
+    background: rgba(201,168,76,0.1);
+    color: var(--gold-light);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .pkg-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .pkg-price-label { font-size: 0.68rem; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.5px; }
+  .pkg-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--gold-light);
+  }
+  .pkg-price span { font-family: 'Jost', sans-serif; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+
+  .btn-book {
+    background: var(--gold);
+    color: var(--green-deep);
+    border: none;
+    padding: 0.55rem 1.3rem;
+    border-radius: 2px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+  }
+
+  .btn-book:hover { background: var(--gold-light); }
+
+  /* ─── FEATURES ─── */
+  .feat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .feat-card {
+    padding: 2rem 1.4rem;
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .feat-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 8px 32px rgba(201,168,76,0.1);
+  }
+
+  .feat-icon {
+    width: 50px; height: 50px;
+    background: var(--cream-dark);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid var(--border);
+  }
+
+  .feat-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--green-deep);
+    margin-bottom: 0.5rem;
+  }
+
+  .feat-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
+
+  /* ─── UMRAH BANNER ─── */
+  .umrah-wrap {
+    background: var(--gold);
+    padding: 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .umrah-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .umrah-geo {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(13,61,38,0.05) 30px, rgba(13,61,38,0.05) 31px);
+  }
+
+  .umrah-text { position: relative; }
+
+  .umrah-text h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 0.3rem;
+  }
+
+  .umrah-text p { color: rgba(13,61,38,0.65); font-size: 0.95rem; font-weight: 300; }
+
+  .btn-dark {
+    background: var(--green-deep);
+    color: white;
+    border: none;
+    padding: 0.9rem 2.2rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .btn-dark:hover { background: var(--green-bright); }
+
+  /* ─── TESTIMONIALS ─── */
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+  .testi-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 1.8rem;
+  }
+
+  .testi-stars { color: var(--gold); letter-spacing: 2px; margin-bottom: 1rem; font-size: 0.85rem; }
+
+  .testi-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--text-body);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .testi-person { display: flex; align-items: center; gap: 10px; }
+
+  .testi-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--green-deep);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600;
+    font-size: 0.82rem;
+    color: white;
+    flex-shrink: 0;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .testi-name { color: var(--green-deep); font-size: 0.9rem; font-weight: 500; }
+  .testi-loc { color: var(--text-muted); font-size: 0.75rem; }
+
+  /* ─── NEWSLETTER ─── */
+  .nl-wrap { background: var(--cream-dark) url('') center/cover; padding: 5rem 4rem; text-align: center; }
+  .nl-inner { max-width: 560px; margin: 0 auto; }
+  .nl-inner .section-title { margin-bottom: 0.8rem; }
+  .nl-inner .section-sub { margin: 0 auto 2rem; text-align: center; }
+
+  .nl-form { display: flex; gap: 0.5rem; max-width: 480px; margin: 0 auto; }
+
+  .nl-input {
+    flex: 1;
+    padding: 0.9rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    background: white;
+    outline: none;
+    color: var(--text-body);
+  }
+
+  .nl-input:focus { border-color: var(--green-bright); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--green-deep);
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .footer-logo { margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; }
+
+  .footer-logo-icon {
+    width: 38px; height: 38px;
+    background: var(--green-mid);
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; font-weight: 700; color: white;
+  }
+
+  .footer-logo-text .logo-name { font-size: 1.1rem; }
+  .footer-logo-text .logo-tag { font-size: 0.55rem; }
+
+  .footer-tagline {
+    color: rgba(255,255,255,0.35);
+    font-size: 0.82rem;
+    line-height: 1.9;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    max-width: 280px;
+  }
+
+  .social-row { display: flex; gap: 0.7rem; }
+
+  .social-btn {
+    width: 34px; height: 34px;
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.75rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .footer-col h4 {
+    color: var(--gold);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.6rem; }
+  .footer-col a {
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+    font-weight: 300;
+  }
+  .footer-col a:hover { color: rgba(255,255,255,0.85); }
+
+  .footer-bottom {
+    background: rgba(0,0,0,0.25);
+    padding: 1.2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .footer-bottom p { color: rgba(255,255,255,0.25); font-size: 0.76rem; }
+
+  /* ─── MODAL ─── */
+  .modal-backdrop {
+    display: none;
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(13,61,38,0.75);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-backdrop.open { display: flex; }
+
+  .modal {
+    background: var(--cream);
+    border-radius: var(--r-lg);
+    padding: 2.5rem;
+    width: 90%; max-width: 540px;
+    position: relative;
+    border: 1px solid var(--border);
+    max-height: 90vh; overflow-y: auto;
+  }
+
+  .modal-close {
+    position: absolute; top: 1.2rem; right: 1.2rem;
+    background: none; border: none; cursor: pointer;
+    font-size: 1.3rem; color: var(--text-muted);
+  }
+
+  .modal h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--green-deep);
+    margin-bottom: 0.3rem;
+  }
+
+  .modal-pkg-name {
+    color: var(--gold);
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+
+  .success-msg { display: none; text-align: center; padding: 2rem 0; }
+  .success-msg .icon { font-size: 3rem; margin-bottom: 1rem; }
+  .success-msg h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; color: var(--green-deep);
+    margin-bottom: 0.5rem;
+  }
+  .success-msg p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.8; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .hero-content { grid-template-columns: 1fr; padding: 8rem 1.5rem 3rem; }
+    .stats-bar { padding: 1.5rem; flex-wrap: wrap; }
+    .section-wrap { padding: 4rem 1.5rem; }
+    .dest-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .dest-card.tall { grid-row: auto; }
+    .dest-card { min-height: 240px; }
+    .pkg-inner { padding: 4rem 1.5rem; }
+    .pkg-grid { grid-template-columns: 1fr; }
+    .feat-grid { grid-template-columns: 1fr 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    footer { grid-template-columns: 1fr 1fr; padding: 3rem 1.5rem; }
+    .footer-bottom { flex-direction: column; gap: 0.4rem; text-align: center; padding: 1rem 1.5rem; }
+    .umrah-wrap { padding: 2.5rem 1.5rem; }
+    .nl-wrap { padding: 4rem 1.5rem; }
+    .nl-form { flex-direction: column; }
+    .modal-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-wrap">
+    <div class="logo-icon">JT</div>
+    <div class="logo-text">
+      <span class="logo-name">Jannah Tours</span>
+      <span class="logo-tag">Live the Islamic History</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#why">About Us</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#book" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-geo"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Trusted Islamic Travel Specialists</div>
+      <h1>Walk where the <em>Prophets</em> walked</h1>
+      <p class="hero-sub">Journey through the sacred lands of Islam — from the holy cities of Makkah and Madinah to the timeless grandeur of Istanbul, Al-Quds, and Andalusia. Guided. Meaningful. Unforgettable.</p>
+      <div class="hero-actions">
+        <a href="#packages" class="btn-primary">Explore Packages</a>
+        <a href="#destinations" class="btn-ghost">Our Destinations</a>
+      </div>
+    </div>
+
+    <!-- BOOKING WIDGET -->
+    <div class="booking-widget">
+      <div class="widget-title">Plan Your Journey</div>
+      <div class="widget-tabs">
+        <button class="tab-btn active" onclick="switchTab(this,'tours')">Tours</button>
+        <button class="tab-btn" onclick="switchTab(this,'umrah')">Umrah</button>
+        <button class="tab-btn" onclick="switchTab(this,'custom')">Custom</button>
+      </div>
+
+      <div id="tab-tours">
+        <div class="form-group">
+          <label class="form-label">Destination</label>
+          <select class="form-select">
+            <option value="">Select sacred destination...</option>
+            <option>Makkah Al-Mukarramah, KSA</option>
+            <option>Madinah Al-Munawwarah, KSA</option>
+            <option>Al-Quds (Jerusalem), Palestine</option>
+            <option>Istanbul & Bursa, Türkiye</option>
+            <option>Cordoba & Granada, Spain</option>
+            <option>Cairo & Sinai, Egypt</option>
+            <option>Baghdad & Najaf, Iraq</option>
+            <option>Konya, Türkiye</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Departure Date</label>
+            <input type="date" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Duration</label>
+            <select class="form-select">
+              <option>5–7 days</option>
+              <option>8–12 days</option>
+              <option>13–18 days</option>
+              <option>19+ days</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Travellers</label>
+          <select class="form-select">
+            <option>1 Adult</option>
+            <option>2 Adults (Couple)</option>
+            <option>Family (2+2)</option>
+            <option>Family (2+3)</option>
+            <option>Group (6+)</option>
+          </select>
+        </div>
+        <button class="widget-submit" onclick="searchTours()">Search Available Tours ☽</button>
+      </div>
+
+      <div id="tab-umrah" style="display:none">
+        <div class="form-group">
+          <label class="form-label">Package Type</label>
+          <select class="form-select">
+            <option>Economy Umrah Package</option>
+            <option>Standard Umrah Package</option>
+            <option>Premium Umrah Package</option>
+            <option>VIP Umrah Package</option>
+            <option>Ramadan Umrah Package</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Departure</label>
+            <input type="date" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nights</label>
+            <select class="form-select">
+              <option>7 Nights</option>
+              <option>10 Nights</option>
+              <option>14 Nights</option>
+              <option>21 Nights</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Pilgrims</label>
+          <select class="form-select">
+            <option>1 Pilgrim</option>
+            <option>2 Pilgrims</option>
+            <option>3 Pilgrims</option>
+            <option>Family Group</option>
+          </select>
+        </div>
+        <button class="widget-submit" onclick="searchTours()">Check Umrah Availability ☽</button>
+      </div>
+
+      <div id="tab-custom" style="display:none">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-input" placeholder="Full name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Destinations of Interest</label>
+          <input type="text" class="form-input" placeholder="e.g. Makkah, Istanbul, Andalusia">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Group Size</label>
+          <select class="form-select">
+            <option>1–2 people</option>
+            <option>3–5 people</option>
+            <option>6–15 people</option>
+            <option>16+ (large group)</option>
+          </select>
+        </div>
+        <button class="widget-submit" onclick="searchTours()">Request Custom Quote ☽</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-num">22+</span>
+    <span class="stat-label">Sacred Countries</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">15K</span>
+    <span class="stat-label">Pilgrims Served</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">180</span>
+    <span class="stat-label">Curated Packages</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">4.9★</span>
+    <span class="stat-label">Average Rating</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">12yr</span>
+    <span class="stat-label">Experience</span>
+  </div>
+</div>
+
+<!-- DESTINATIONS -->
+<div id="destinations">
+  <div class="section-wrap">
+    <p class="section-eyebrow">Sacred Destinations</p>
+    <h2 class="section-title">Lands of <em>history & faith</em></h2>
+    <p class="section-sub">From the first house of Allah to the farthest mosque — discover the places that shaped Islamic civilisation.</p>
+
+    <div class="dest-grid">
+      <div class="dest-card tall">
+        <img class="dest-img" src="https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=800&q=80" alt="Makkah">
+        <div class="dest-overlay">
+          <div class="dest-badge">Most Sacred</div>
+          <h3 class="dest-name">Makkah Al-Mukarramah</h3>
+          <div class="dest-meta">
+            <span>🕌 Umrah & Hajj Packages</span>
+            <span class="dest-price">from $1,890</span>
+          </div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <img class="dest-img" src="https://images.unsplash.com/photo-1580418827493-f2b22c0a76cb?w=600&q=80" alt="Istanbul">
+        <div class="dest-overlay">
+          <div class="dest-badge">Ottoman Legacy</div>
+          <h3 class="dest-name">Istanbul</h3>
+          <div class="dest-meta"><span class="dest-price">from $1,290</span></div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <img class="dest-img" src="https://images.unsplash.com/photo-1539622106114-e0df812c9690?w=600&q=80" alt="Al-Quds Jerusalem">
+        <div class="dest-overlay">
+          <div class="dest-badge">Al-Quds</div>
+          <h3 class="dest-name">Jerusalem</h3>
+          <div class="dest-meta"><span class="dest-price">from $1,490</span></div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <img class="dest-img" src="https://images.unsplash.com/photo-1548074869-3bfdf7dc0b35?w=600&q=80" alt="Andalusia Spain">
+        <div class="dest-overlay">
+          <div class="dest-badge">Andalusia</div>
+          <h3 class="dest-name">Cordoba & Granada</h3>
+          <div class="dest-meta"><span class="dest-price">from $1,690</span></div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <img class="dest-img" src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=600&q=80" alt="Cairo Egypt">
+        <div class="dest-overlay">
+          <div class="dest-badge">Egypt</div>
+          <h3 class="dest-name">Cairo & Sinai</h3>
+          <div class="dest-meta"><span class="dest-price">from $990</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PACKAGES -->
+<div class="pkg-bg" id="packages">
+  <div class="pkg-inner">
+    <p class="section-eyebrow" style="color: var(--gold);">Featured Packages</p>
+    <h2 class="section-title">Journeys <em>crafted</em> with purpose</h2>
+    <p class="section-sub">Every package is guided by a knowledgeable Islamic scholar or historian — ensuring each step carries spiritual depth.</p>
+
+    <div class="pkg-grid">
+      <div class="pkg-card">
+        <div class="pkg-img-wrap">
+          <img class="pkg-img" src="https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=600&q=80" alt="Umrah Package">
+          <div class="pkg-tag">Bestseller</div>
+        </div>
+        <div class="pkg-body">
+          <div class="pkg-meta">
+            <span>🕐 10 Days · 9 Nights</span>
+            <span class="pkg-rating">★ 5.0 (312)</span>
+          </div>
+          <h3 class="pkg-name">Sacred Umrah — Makkah & Madinah</h3>
+          <p class="pkg-desc">Perform Umrah with spiritual guidance, visit the Prophet's Mosque ﷺ, and explore the key historical sites of both holy cities.</p>
+          <div class="pkg-includes">
+            <span class="pkg-include-tag">✈ Flights Included</span>
+            <span class="pkg-include-tag">🏨 5-Star Hotel</span>
+            <span class="pkg-include-tag">🎓 Scholar Guide</span>
+            <span class="pkg-include-tag">🚌 Transport</span>
+          </div>
+          <div class="pkg-footer">
+            <div>
+              <div class="pkg-price-label">Per person</div>
+              <div class="pkg-price">$2,490 <span>twin share</span></div>
+            </div>
+            <button class="btn-book" onclick="openBooking('Sacred Umrah — Makkah & Madinah','$2,490')">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pkg-card">
+        <div class="pkg-img-wrap">
+          <img class="pkg-img" src="https://images.unsplash.com/photo-1580418827493-f2b22c0a76cb?w=600&q=80" alt="Istanbul">
+          <div class="pkg-tag">New 2025</div>
+        </div>
+        <div class="pkg-body">
+          <div class="pkg-meta">
+            <span>🕐 8 Days · 7 Nights</span>
+            <span class="pkg-rating">★ 4.9 (98)</span>
+          </div>
+          <h3 class="pkg-name">Ottoman Heritage — Istanbul & Bursa</h3>
+          <p class="pkg-desc">Explore the Hagia Sophia, Topkapi Palace, Sultanahmet Mosque, and the first Ottoman capital of Bursa with expert historians.</p>
+          <div class="pkg-includes">
+            <span class="pkg-include-tag">✈ Flights Included</span>
+            <span class="pkg-include-tag">🏨 Boutique Hotel</span>
+            <span class="pkg-include-tag">🎓 Historian</span>
+          </div>
+          <div class="pkg-footer">
+            <div>
+              <div class="pkg-price-label">Per person</div>
+              <div class="pkg-price">$1,890 <span>twin share</span></div>
+            </div>
+            <button class="btn-book" onclick="openBooking('Ottoman Heritage — Istanbul & Bursa','$1,890')">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pkg-card">
+        <div class="pkg-img-wrap">
+          <img class="pkg-img" src="https://images.unsplash.com/photo-1539622106114-e0df812c9690?w=600&q=80" alt="Al-Quds">
+          <div class="pkg-tag">Limited Spots</div>
+        </div>
+        <div class="pkg-body">
+          <div class="pkg-meta">
+            <span>🕐 7 Days · 6 Nights</span>
+            <span class="pkg-rating">★ 4.9 (177)</span>
+          </div>
+          <h3 class="pkg-name">Al-Quds & The Holy Land</h3>
+          <p class="pkg-desc">Pray at Masjid Al-Aqsa, visit Dome of the Rock, walk the Via Dolorosa, and trace the footsteps of the Prophets ﷺ through Palestine.</p>
+          <div class="pkg-includes">
+            <span class="pkg-include-tag">✈ Flights</span>
+            <span class="pkg-include-tag">🏨 Hotel</span>
+            <span class="pkg-include-tag">🎓 Scholar</span>
+            <span class="pkg-include-tag">🚌 Transport</span>
+          </div>
+          <div class="pkg-footer">
+            <div>
+              <div class="pkg-price-label">Per person</div>
+              <div class="pkg-price">$1,690 <span>twin share</span></div>
+            </div>
+            <button class="btn-book" onclick="openBooking('Al-Quds & The Holy Land','$1,690')">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pkg-card">
+        <div class="pkg-img-wrap">
+          <img class="pkg-img" src="https://images.unsplash.com/photo-1548074869-3bfdf7dc0b35?w=600&q=80" alt="Andalusia">
+          <div class="pkg-tag">Cultural</div>
+        </div>
+        <div class="pkg-body">
+          <div class="pkg-meta">
+            <span>🕐 10 Days · 9 Nights</span>
+            <span class="pkg-rating">★ 4.8 (64)</span>
+          </div>
+          <h3 class="pkg-name">The Glory of Andalusia</h3>
+          <p class="pkg-desc">Relive the golden age of Islamic Spain — the Alhambra, Mezquita of Cordoba, the Great Mosque of Seville, and the legacy of Ibn Rushd.</p>
+          <div class="pkg-includes">
+            <span class="pkg-include-tag">✈ Flights</span>
+            <span class="pkg-include-tag">🏨 Riad Stay</span>
+            <span class="pkg-include-tag">🎓 Historian</span>
+          </div>
+          <div class="pkg-footer">
+            <div>
+              <div class="pkg-price-label">Per person</div>
+              <div class="pkg-price">$2,190 <span>twin share</span></div>
+            </div>
+            <button class="btn-book" onclick="openBooking('The Glory of Andalusia','$2,190')">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pkg-card">
+        <div class="pkg-img-wrap">
+          <img class="pkg-img" src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=600&q=80" alt="Egypt">
+          <div class="pkg-tag">Family Friendly</div>
+        </div>
+        <div class="pkg-body">
+          <div class="pkg-meta">
+            <span>🕐 9 Days · 8 Nights</span>
+            <span class="pkg-rating">★ 4.8 (141)</span>
+          </div>
+          <h3 class="pkg-name">Prophets of Egypt — Cairo to Sinai</h3>
+          <p class="pkg-desc">Walk the path of Prophet Musa ﷺ — the Pyramids, Al-Azhar Mosque, Mount Sinai, and the ancient Islamic quarters of Old Cairo.</p>
+          <div class="pkg-includes">
+            <span class="pkg-include-tag">✈ Flights</span>
+            <span class="pkg-include-tag">🏨 Hotel</span>
+            <span class="pkg-include-tag">🎓 Scholar</span>
+          </div>
+          <div class="pkg-footer">
+            <div>
+              <div class="pkg-price-label">Per person</div>
+              <div class="pkg-price">$1,490 <span>twin share</span></div>
+            </div>
+            <button class="btn-book" onclick="openBooking('Prophets of Egypt — Cairo to Sinai','$1,490')">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pkg-card">
+        <div class="pkg-img-wrap">
+          <img class="pkg-img" src="https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=600&q=80" alt="Ramadan Umrah">
+          <div class="pkg-tag">🌙 Ramadan</div>
+        </div>
+        <div class="pkg-body">
+          <div class="pkg-meta">
+            <span>🕐 15 Days</span>
+            <span class="pkg-rating">★ 5.0 (223)</span>
+          </div>
+          <h3 class="pkg-name">Ramadan Umrah — Last 10 Nights</h3>
+          <p class="pkg-desc">Spend the last ten nights of Ramadan in Makkah, seeking Laylatul Qadr in the most sacred place on Earth, guided in worship throughout.</p>
+          <div class="pkg-includes">
+            <span class="pkg-include-tag">✈ Flights</span>
+            <span class="pkg-include-tag">🏨 5-Star Hotel</span>
+            <span class="pkg-include-tag">🎓 Scholar</span>
+            <span class="pkg-include-tag">🍽 Iftar Meals</span>
+          </div>
+          <div class="pkg-footer">
+            <div>
+              <div class="pkg-price-label">Per person</div>
+              <div class="pkg-price">$3,490 <span>twin share</span></div>
+            </div>
+            <button class="btn-book" onclick="openBooking('Ramadan Umrah — Last 10 Nights','$3,490')">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- UMRAH BANNER -->
+<div class="umrah-wrap">
+  <div class="umrah-geo"></div>
+  <div class="umrah-inner">
+    <div class="umrah-text">
+      <h3>Planning your Hajj 2026?</h3>
+      <p>Limited Hajj places available — register your interest early to secure your spot.</p>
+    </div>
+    <a href="#book" class="btn-dark" onclick="openBooking('Hajj 2026 Registration','Contact us for pricing')">Register Your Interest →</a>
+  </div>
+</div>
+
+<!-- WHY US -->
+<div id="why">
+  <div class="section-wrap">
+    <p class="section-eyebrow">Why Jannah Tours</p>
+    <h2 class="section-title">Travel with <em>knowledge & care</em></h2>
+    <p class="section-sub">We don't just take you to these places — we help you understand them, feel them, and carry them in your heart.</p>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-icon">🎓</div>
+        <h3 class="feat-title">Scholar-Led Tours</h3>
+        <p class="feat-desc">Every tour is accompanied by a qualified Islamic scholar or historian who brings each site to life with Quranic verses, hadith, and stories.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🛡</div>
+        <h3 class="feat-title">Fully ATOL Protected</h3>
+        <p class="feat-desc">All bookings are financially protected. Cancel up to 45 days before departure for a full refund. Your peace of mind matters.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🕌</div>
+        <h3 class="feat-title">Halal Guaranteed</h3>
+        <p class="feat-desc">100% halal food, gender-considerate accommodation arrangements, and prayer times built into every itinerary. Always.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">☎</div>
+        <h3 class="feat-title">24/7 On-Trip Support</h3>
+        <p class="feat-desc">Our dedicated team is reachable around the clock during your journey — for anything from logistics to local guidance.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div style="background: var(--cream-dark); padding: 2rem 0;" id="testimonials">
+  <div class="section-wrap" style="padding-top: 4rem; padding-bottom: 4rem;">
+    <p class="section-eyebrow">Testimonials</p>
+    <h2 class="section-title">Words from our <em>pilgrims</em></h2>
+    <p class="section-sub">Alhamdulillah — here's what our travellers say after returning.</p>
+
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"The Umrah package was flawlessly organised. Sheikh Tariq's commentary at every ziyarat made this so much more than just a tour — it was a spiritual awakening. Alhamdulillah."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">AA</div>
+          <div>
+            <div class="testi-name">Ahmed Al-Rashidi</div>
+            <div class="testi-loc">Cairo, Egypt</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Visiting Al-Aqsa with Jannah Tours was truly a once-in-a-lifetime experience. The scholar's knowledge of the history of Al-Quds moved us to tears. Highly recommend to every Muslim."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">FK</div>
+          <div>
+            <div class="testi-name">Fatima Khan</div>
+            <div class="testi-loc">Manchester, UK</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"The Andalusia tour was absolutely breathtaking — walking through the Alhambra while learning the history of Tariq ibn Ziyad gave me goosebumps. SubhanAllah. Jannah Tours exceeded all expectations."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">YB</div>
+          <div>
+            <div class="testi-name">Yusuf Benali</div>
+            <div class="testi-loc">Amsterdam, Netherlands</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="nl-wrap" id="book">
+  <div class="nl-inner">
+    <p class="section-eyebrow" style="justify-content: center;">Stay Connected</p>
+    <h2 class="section-title">Never miss a <em>journey</em></h2>
+    <p class="section-sub">Receive new packages, Ramadan specials, and Islamic travel inspiration in your inbox.</p>
+    <div class="nl-form">
+      <input type="email" class="nl-input" placeholder="Your email address">
+      <button class="btn-primary" onclick="subscribeNL()">Subscribe</button>
+    </div>
+    <p style="font-size: 0.73rem; color: var(--text-muted); margin-top: 0.8rem;">No spam. Unsubscribe anytime. بارك الله فيكم</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">
+      <div class="footer-logo-icon">JT</div>
+      <div class="footer-logo-text">
+        <span class="logo-name">Jannah Tours</span>
+        <span class="logo-tag">Live the Islamic History</span>
+      </div>
+    </div>
+    <p class="footer-tagline">Guiding Muslims to the sacred lands of Islamic history since 2013. Every journey is a step closer to understanding our beautiful deen.</p>
+    <div class="social-row">
+      <a class="social-btn" title="Instagram">📷</a>
+      <a class="social-btn" title="Facebook">f</a>
+      <a class="social-btn" title="WhatsApp">W</a>
+      <a class="social-btn" title="YouTube">▶</a>
+    </div>
+  </div>
+  <div class="footer-col">
+    <h4>Destinations</h4>
+    <ul>
+      <li><a href="#">Makkah & Madinah</a></li>
+      <li><a href="#">Al-Quds, Palestine</a></li>
+      <li><a href="#">Istanbul, Türkiye</a></li>
+      <li><a href="#">Andalusia, Spain</a></li>
+      <li><a href="#">Cairo & Sinai</a></li>
+      <li><a href="#">All Destinations</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Packages</h4>
+    <ul>
+      <li><a href="#">Umrah Packages</a></li>
+      <li><a href="#">Hajj 2026</a></li>
+      <li><a href="#">Ramadan Tours</a></li>
+      <li><a href="#">Cultural History Tours</a></li>
+      <li><a href="#">Family Tours</a></li>
+      <li><a href="#">Custom Itineraries</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Company</h4>
+    <ul>
+      <li><a href="#">About Jannah Tours</a></li>
+      <li><a href="#">Our Scholars</a></li>
+      <li><a href="#">Islamic Travel Blog</a></li>
+      <li><a href="#">Responsible Travel</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">Careers</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2025 Jannah Tours Ltd. All rights reserved. ATOL Protected.</p>
+  <p>Privacy Policy · Terms & Conditions · Cookie Settings</p>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="modal-backdrop" id="bookingModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeBooking()">✕</button>
+    <div id="modal-form">
+      <h3>Book Your Journey</h3>
+      <p class="modal-pkg-name" id="modal-pkg-name">—</p>
+      <div class="modal-grid">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-input" placeholder="Muhammad">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-input" placeholder="Abdullah">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone / WhatsApp</label>
+          <input type="tel" class="form-input" placeholder="+20 1XX XXX XXXX">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred Departure</label>
+          <input type="date" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Pilgrims / Travellers</label>
+          <select class="form-select">
+            <option>1 Adult</option>
+            <option selected>2 Adults</option>
+            <option>Family (2+2)</option>
+            <option>Group (6+)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:0.5rem">
+        <label class="form-label">Special Requirements</label>
+        <textarea class="form-input" rows="2" placeholder="Dietary needs, wheelchair access, room preferences, special occasions..."></textarea>
+      </div>
+      <p id="modal-price" style="font-family:'Cormorant Garamond',serif; font-size:1.25rem; color:var(--green-deep); margin: 1rem 0 0.3rem;"></p>
+      <p style="font-size:0.73rem; color:var(--text-muted); margin-bottom:1rem;">Price confirmed after availability check. Free cancellation up to 45 days before departure. Deposits from $250.</p>
+      <button class="widget-submit" onclick="confirmBooking()">Confirm Booking Request ☽</button>
+    </div>
+    <div class="success-msg" id="modal-success">
+      <div class="icon">🕌</div>
+      <h4>JazakAllah Khayran!</h4>
+      <p>Your booking request has been received. Our team will contact you within 24 hours via email and WhatsApp to confirm availability and next steps.<br><br>May Allah accept your journey. آمين</p>
+      <button class="btn-primary" style="margin-top: 1.5rem;" onclick="closeBooking()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function switchTab(btn, tab) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    ['tours','umrah','custom'].forEach(t => {
+      document.getElementById('tab-' + t).style.display = t === tab ? 'block' : 'none';
+    });
+  }
+
+  function searchTours() {
+    const btn = event.target;
+    const orig = btn.textContent;
+    btn.textContent = 'Searching...';
+    setTimeout(() => {
+      btn.textContent = 'Packages found — see below ↓';
+      document.getElementById('packages').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => { btn.textContent = orig; }, 3000);
+    }, 900);
+  }
+
+  function openBooking(name, price) {
+    document.getElementById('modal-pkg-name').textContent = name;
+    document.getElementById('modal-price').textContent = 'Estimated cost: ' + price + ' per person';
+    document.getElementById('modal-form').style.display = 'block';
+    document.getElementById('modal-success').style.display = 'none';
+    document.getElementById('bookingModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeBooking() {
+    document.getElementById('bookingModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function confirmBooking() {
+    const btn = event.target;
+    btn.textContent = 'Processing...';
+    setTimeout(() => {
+      document.getElementById('modal-form').style.display = 'none';
+      document.getElementById('modal-success').style.display = 'block';
+    }, 1200);
+  }
+
+  function subscribeNL() {
+    const input = document.querySelector('.nl-input');
+    const btn = event.target;
+    if (!input.value || !input.value.includes('@')) {
+      input.style.borderColor = '#C4623A';
+      setTimeout(() => { input.style.borderColor = ''; }, 2000);
+      return;
+    }
+    btn.textContent = '✓ Subscribed!';
+    input.value = '';
+    setTimeout(() => { btn.textContent = 'Subscribe'; }, 3000);
+  }
+
+  document.getElementById('bookingModal').addEventListener('click', function(e) {
+    if (e.target === this) closeBooking();
+  });
+</script>
+</body>
+</html>
